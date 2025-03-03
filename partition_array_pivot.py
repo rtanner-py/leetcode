@@ -9,12 +9,14 @@ Return nums after the rearrangement.
 
 class Solution:
     def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
-        s,p,l = [],[],[]
+        #don't need an array for p, just need to know how many times it appears
+        p = 0
+        s,l = [],[]
         for i in nums:
             if i < pivot:
                 s.append(i)
             elif i == pivot:
-                p.append(i)
+                p += 1
             else:
                 l.append(i)
-        return s+p+l
+        return s+[pivot]*p+l
