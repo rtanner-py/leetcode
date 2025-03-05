@@ -30,7 +30,7 @@ class Solution:
             'D': 500,
             'M': 1000
         }
-        total = 0
+        #total = 0
         # for pos, let in enumerate(s):
         #     value = values[let]
         #     if let == "I" and pos+1 < len(s):
