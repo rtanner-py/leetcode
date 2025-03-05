@@ -50,14 +50,25 @@ class Solution:
         # note that usually written from largest to smallest, left to right, so VI = 6, but IV = 4.
         # if you go right to left (reversed(s)) then: if you hit a character that is smaller than the previous, you need to subtract; otherwise you add:
 
-        previous_value = 0
-        for letter in reversed(s):
-            value = values[letter]
-            if value < previous_value:
-                total -= value
-            else:
-                total += value
-            previous_value = value
+        # previous_value = 0
+        # for letter in reversed(s):
+        #     value = values[letter]
+        #     if value < previous_value:
+        #         total -= value
+        #     else:
+        #         total += value
+        #     previous_value = value
+        # return total
+
+        #if we know we are starting with the last character, then why initialise total  at 0, rather than the value of the last char?
+        total = values[s[-1]]
+        previous_value = total
+
+        #instead of using a for loop, use an index and traverse the string in reverse. We already have the last letter, so start at the second to last
+        for i in range(len(s) - 2, -1, -1):
+            value = values[s[i]]
+            total += -value if value < previous_value else value
+            previous_total = value
         return total
 
 
