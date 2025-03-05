@@ -31,21 +31,33 @@ class Solution:
             'M': 1000
         }
         total = 0
-        for pos, let in enumerate(s):
-            value = values[let]
-            if let == "I" and pos+1 < len(s):
-                if s[pos+1] in ('V', 'X'):
-                    total -= value
-                    continue
-            elif let == "X" and pos+1 < len(s):
-                if s[pos+1] in ("L","C"):
-                    total -= value
-                    continue
-            elif let == "C" and pos+1 < len(s):
-                if s[pos+1] in ("D","M"):
-                    total -= value
-                    continue
-            total += value
+        # for pos, let in enumerate(s):
+        #     value = values[let]
+        #     if let == "I" and pos+1 < len(s):
+        #         if s[pos+1] in ('V', 'X'):
+        #             total -= value
+        #             continue
+        #     elif let == "X" and pos+1 < len(s):
+        #         if s[pos+1] in ("L","C"):
+        #             total -= value
+        #             continue
+        #     elif let == "C" and pos+1 < len(s):
+        #         if s[pos+1] in ("D","M"):
+        #             total -= value
+        #             continue
+        #     total += value
+
+        # note that usually written from largest to smallest, left to right, so VI = 6, but IV = 4.
+        # if you go right to left (reversed(s)) then: if you hit a character that is smaller than the previous, you need to subtract; otherwise you add:
+
+        previous_value = 0
+        for letter in reversed(s):
+            value = values[letter]
+            if value < previous_value:
+                total -= value
+            else:
+                total += value
+            previous_value = value
         return total
 
 
