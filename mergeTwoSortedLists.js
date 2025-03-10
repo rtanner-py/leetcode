@@ -11,6 +11,13 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(list1, list2) {
+    /**
+    - Can create variables in two ways main ways. Use let for variables that change; const for fixed variables;
+    - Use new when creating instances of a class (see below) so that it uses a constructor [note the
+    reference to 'this' in the function] otherwise it will throw an error [It tries to treat it as a normal 
+    functional call, but will error because it uses this]
+    - Don't use var because it has function scoping issues.
+    **/
     let dummy = new ListNode();
     let current = dummy;
 
