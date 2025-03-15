@@ -24,9 +24,25 @@ Incrementing by one gives 9 + 1 = 10.
 Thus, the result should be [1,0].
 """
 
+# Initial solution involved converting list of ints to a number, incrementing by one, and then changing the int
+# back into a list
+
+# class Solution:
+#     def plusOne(self, digits: List[int]) -> List[int]:
+#         result = 0
+#         for index, num in enumerate(digits):
+#             result += num * 10**(len(digits)-(index+1))
+#         return [int(i) for i in str(result+1)]
+
+# second solution. Modfies the list in place, avoids conversion, which may be problematic with large numbers
+# Only iterates until a non-9 value is found. If the 'unit' value is 8, then it only needs to look at digits[-1]
+# however, if digits[-1] is a 9, then it needs to change to 0, and then look at digits[-2]
+
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        result = 0
-        for index, num in enumerate(digits):
-            result += num * 10**(len(digits)-(index+1))
-        return [int(i) for i in str(result+1)]
+        for i in range(len(digits)-1,-1,-1):
+            if digits[i] < 9:
+                digits[i] += 1
+                return digits
+            digits[i] = 0
+        return [1] + digits
